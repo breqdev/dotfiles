@@ -1,6 +1,9 @@
 # fig autocomplete
 [ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
 
+# neofetch
+neofetch
+
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -22,12 +25,12 @@ export GPG_TTY=$(tty)
 [ -s "/opt/homebrew/opt/openjdk" ] && export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # PyEnv
-eval "$(pyenv init -)"
+command -v pyenv && eval "$(pyenv init -)"
 
 # Android Studio
 [ -s "$HOME/Library/Android/sdk" ] && export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
-eval $(thefuck --alias frick)
+command -v thefuck && eval $(thefuck --alias frick)
 
 # Bun JavaScript toolchain
 [ -s "$HOME/.bun" ] && export BUN_INSTALL="$HOME/.bun" && export PATH="$BUN_INSTALL/bin:$PATH"
