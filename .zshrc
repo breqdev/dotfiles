@@ -25,12 +25,12 @@ export GPG_TTY=$(tty)
 [ -s "/opt/homebrew/opt/openjdk" ] && export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # PyEnv
-command -v pyenv && eval "$(pyenv init -)"
+command -v pyenv > /dev/null && eval "$(pyenv init -)"
 
 # Android Studio
 [ -s "$HOME/Library/Android/sdk" ] && export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
-command -v thefuck && eval $(thefuck --alias frick)
+command -v thefuck > /dev/null && eval $(thefuck --alias frick)
 
 # Bun JavaScript toolchain
 [ -s "$HOME/.bun" ] && export BUN_INSTALL="$HOME/.bun" && export PATH="$BUN_INSTALL/bin:$PATH"
