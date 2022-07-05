@@ -1,5 +1,6 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # fig autocomplete
-[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
 
 # neofetch
 neofetch
@@ -57,4 +58,6 @@ source $ZSH/oh-my-zsh.sh
 [ -s "/opt/ros/noetic" ] && source /opt/ros/noetic/setup.zsh
 
 # fig autocomplete
-[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
