@@ -31,7 +31,7 @@ command -v pyenv > /dev/null && eval "$(pyenv init -)"
 # Android Studio
 [ -s "$HOME/Library/Android/sdk" ] && export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
-command -v thefuck > /dev/null && eval $(thefuck --alias frick)
+command -v thefuck > /dev/null && eval $(thefuck --alias f)
 
 # Bun JavaScript toolchain
 [ -s "$HOME/.bun" ] && export BUN_INSTALL="$HOME/.bun" && export PATH="$BUN_INSTALL/bin:$PATH"
@@ -56,6 +56,9 @@ source $ZSH/oh-my-zsh.sh
 
 # ROS
 [ -s "/opt/ros/noetic" ] && source /opt/ros/noetic/setup.zsh
+
+# bun completions
+[ -s "/Users/breq/.bun/_bun" ] && source "/Users/breq/.bun/_bun"
 
 # fig autocomplete
 
