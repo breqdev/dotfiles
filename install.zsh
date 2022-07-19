@@ -23,9 +23,11 @@ rm -f ~/.p10k.zsh
 ln -s $REPO_ABSOLUTE_PATH/.p10k.zsh ~/.p10k.zsh
 
 rm -rf ~/.config/neofetch
+mkdir -p ~/.config
 ln -s $REPO_ABSOLUTE_PATH/neofetch ~/.config/neofetch
 
 rm -rf ~/.config/gh/config.yml
+mkdir -p ~/.config/gh
 ln -s $REPO_ABSOLUTE_PATH/gh/config.yml ~/.config/gh/config.yml
 
 rm -rf ~/.gitconfig
@@ -35,4 +37,5 @@ rm -rf ~/.gitignore_global
 ln -s $REPO_ABSOLUTE_PATH/git/.gitignore ~/.gitignore_global
 
 rm -rf ~/.gnupg/gpg.conf
+mkdir -p ~/.gnupg
 ln -s $REPO_ABSOLUTE_PATH/.gnupg/gpg.conf ~/.gnupg/gpg.conf
