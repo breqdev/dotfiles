@@ -1,0 +1,15 @@
+[user]
+	email = breq@breq.dev
+	name = Brooke Chalmers
+	signingkey = EF956A1CEF9CEF5E
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = nano
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[color]
+	ui = true
