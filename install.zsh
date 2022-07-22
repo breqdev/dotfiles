@@ -39,3 +39,9 @@ ln -s $REPO_ABSOLUTE_PATH/git/.gitignore ~/.gitignore_global
 rm -rf ~/.gnupg/gpg.conf
 mkdir -p ~/.gnupg
 ln -s $REPO_ABSOLUTE_PATH/.gnupg/gpg.conf ~/.gnupg/gpg.conf
+
+# gnome terminal profiles
+if [ -s /usr/bin/dconf ]
+then
+  dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
+fi

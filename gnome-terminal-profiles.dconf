@@ -1,0 +1,10 @@
+[/]
+default='7dcffa0c-4689-4718-9666-dbff447ed456'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '7dcffa0c-4689-4718-9666-dbff447ed456']
+
+[:7dcffa0c-4689-4718-9666-dbff447ed456]
+audible-bell=true
+background-color='rgb(255,255,255)'
+font='MesloLGS NF 12'
+foreground-color='rgb(0,0,0)'
+visible-name='Brooke Light'
