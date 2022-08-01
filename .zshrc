@@ -60,6 +60,18 @@ source $ZSH/oh-my-zsh.sh
 # bun completions
 [ -s "/Users/breq/.bun/_bun" ] && source "/Users/breq/.bun/_bun"
 
+# zoxide
+eval "$(zoxide init zsh --cmd cd)"
+
+# alternatives
+alias cat="bat"
+alias ps="procs"
+alias du="dust"
+alias top="btm"
+alias dig="dog"
+alias rm="rip"
+
+
 # fig autocomplete
 
 # Fig post block. Keep at the bottom of this file.

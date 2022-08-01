@@ -40,6 +40,14 @@ rm -rf ~/.gnupg/gpg.conf
 mkdir -p ~/.gnupg
 ln -s $REPO_ABSOLUTE_PATH/.gnupg/gpg.conf ~/.gnupg/gpg.conf
 
+rm -rf ~/.config/bat/config
+mkdir -p ~/.config/bat
+ln -s $REPO_ABSOLUTE_PATH/bat/config ~/.config/bat/config
+
+rm -rf ~/.config/bottom/bottom.toml
+mkdir -p ~/.config/bottom
+ln -s $REPO_ABSOLUTE_PATH/bottom/bottom.toml ~/.config/bottom/bottom.toml
+
 # gnome terminal profiles
 if [ -s /usr/bin/dconf ]
 then
