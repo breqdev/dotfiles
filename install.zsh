@@ -2,6 +2,16 @@
 
 REPO_ABSOLUTE_PATH=$(pwd)
 
+# install packages
+if [[ `uname` == "Darwin" ]]
+then
+  if ! type brew > /dev/null
+  then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+  brew install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt)
+fi
+
 # download plugins
 if [ -s ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]
 then
