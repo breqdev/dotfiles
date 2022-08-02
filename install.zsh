@@ -36,10 +36,52 @@ then
   brew install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt)
 fi
 
+# apt
+if [[ `uname` == "Linux" ]]
+then
+  . /etc/os-release
+  if [[ $ID_LIKE == "debian" ]]
+  then
+    echo "Setting up apt sources..."
+
+    # ngrok
+    curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+    echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+
+    echo "Installing apt packages..."
+    sudo apt-get install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
+  fi
+fi
+
+# rust
+if ! type rustup > /dev/null
+then
+  echo "Installing rustup..."
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
+# cargo
+echo "Updating Rust..."
+rustup update stable
+echo "Installing Cargo packages..."
+cargo install --quiet --locked $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
+
 # pip
-echo "Installing Python packages..."
+if ! [[ -s $HOME/.pyenv ]]
+then
+  echo "Installing pyenv..."
+  unalias rm >/dev/null 2>&1 || true
+  rm -rf $HOME/.pyenv
+  curl https://pyenv.run | bash
+fi
+
+command -v pyenv >/dev/null || PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+pyenv install --skip-existing 3.10.4
 pyenv global 3.10.4
+
+echo "Installing Python packages..."
 pip install --quiet --upgrade pip
 pip install --quiet -r $REPO_ABSOLUTE_PATH/packages/pip.txt
 

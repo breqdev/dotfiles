@@ -1,0 +1,7 @@
+du-dust
+bottom
+miniserve
+procs
+exa
+ripgrep
+rm-improved

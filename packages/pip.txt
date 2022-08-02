@@ -7,8 +7,11 @@ mido
 numpy
 pandas
 pillow
+pre-commit
 pygame
 pynacl
 pyserial
 python-dotenv
 virtualenv
+thefuck
+youtube-dl
