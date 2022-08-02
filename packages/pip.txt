@@ -1,0 +1,14 @@
+requests
+tweepy
+aiohttp
+black
+flask
+mido
+numpy
+pandas
+pillow
+pygame
+pynacl
+pyserial
+python-dotenv
+virtualenv

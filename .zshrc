@@ -26,7 +26,7 @@ export GPG_TTY=$(tty)
 [ -s "/opt/homebrew/opt/openjdk" ] && export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # PyEnv
-command -v pyenv > /dev/null && eval "$(pyenv init -)"
+eval "$(pyenv init -)"
 
 # Android Studio
 [ -s "$HOME/Library/Android/sdk" ] && export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools

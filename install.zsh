@@ -2,17 +2,53 @@
 
 REPO_ABSOLUTE_PATH=$(pwd)
 
+c1="\033[38;5;206m"
+c2="\033[38;5;226m"
+c3="\033[38;5;237m"
+c4="\033[38;5;39m"
+bold="\033[1m"
+italic="\033[3m"
+reset="\033[0m"
+
+success="\033[38;5;39;1m"
+failure="\033[38;5;206;1m"
+
+echo "${c1} _"
+echo "${c1}| |__  _ __${c4} ___  __ _"
+echo "${c1}| '_ \\| '__/${c4} _ \\/ _\` |    ${bold}Hi Brooke!${reset}"
+echo "${c1}| |_) | | ${c4}|  __/ (_| |    ${reset}Hang tight--we're setting things up for you."
+echo "${c1}|_.__/|_|  ${c4}\\___|\\__, |"
+echo "                   ${c4}|_|"
+echo "${reset}"
+echo ""
+
 # install packages
+
+# homebrew
 if [[ `uname` == "Darwin" ]]
 then
   if ! type brew > /dev/null
   then
+    echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
+  echo "Installing Homebrew packages..."
   brew install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt)
 fi
 
+# pip
+echo "Installing Python packages..."
+eval "$(pyenv init -)"
+pyenv global 3.10.4
+pip install --quiet --upgrade pip
+pip install --quiet -r $REPO_ABSOLUTE_PATH/packages/pip.txt
+
+# ssh keys
+echo "Installing SSH keys..."
+python ssh.py
+
 # download plugins
+echo "Installing ZSH plugins..."
 if [ -s ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]
 then
 else
@@ -26,6 +62,7 @@ else
 fi
 
 # symlink configs
+echo "Symlinking config files..."
 rm -f ~/.zshrc
 ln -s $REPO_ABSOLUTE_PATH/.zshrc ~/.zshrc
 
@@ -61,5 +98,44 @@ ln -s $REPO_ABSOLUTE_PATH/bottom/bottom.toml ~/.config/bottom/bottom.toml
 # gnome terminal profiles
 if [ -s /usr/bin/dconf ]
 then
+  echo "Installing Gnome Terminal profiles..."
   dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
 fi
+
+echo "Let's check a few things..."
+echo ""
+
+MISCONFIG=0
+
+# ensure light mode
+echo "Your terminal is in \033[38;5;232mLight Mode \033[38;5;255mDark Mode${reset}"
+if ! read -q "LIGHT_MODE?Is your terminal in light mode? (y/n) "
+then
+  echo ""
+  echo ""
+  echo "${failure}Please set your terminal to light mode.${reset}"
+  MISCONFIG=1
+fi
+echo ""
+echo ""
+
+# ensure nerd font
+echo "\uf74b \ufbd4 \uf062 \uf0e0 \ue7a8"
+if ! read -q "NERD_FONT?Do the above symbols render as icons? (y/n) "
+then
+  echo ""
+  echo ""
+  echo "${failure}Please install a Nerd Font.${reset}"
+  echo "${italic}https://github.com/romkatv/powerlevel10k/blob/master/font.md${reset}"
+  MISCONFIG=1
+fi
+echo ""
+echo ""
+
+if [ $MISCONFIG -eq 0 ]
+then
+  echo "${success}All set!${reset} Enjoy your system, Brooke!"
+  echo ""
+fi
+
+source ~/.zshrc
