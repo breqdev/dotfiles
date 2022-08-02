@@ -1,12 +1,10 @@
 avrdude
-bat
+rust-bat
 bmake
 build-essential
 clang-format
 cmake
 cowsay
-dust
-exa
 ffmpeg
 figlet
 fortune
@@ -30,7 +28,6 @@ gstreamer1.0-pulseaudio
 lame
 lolcat
 neofetch
-ngrok
 nmap
 perl
 postgresql

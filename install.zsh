@@ -36,7 +36,7 @@ then
   brew install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt)
 fi
 
-# apt
+# apt and snap
 if [[ `uname` == "Linux" ]]
 then
   . /etc/os-release
@@ -49,7 +49,18 @@ then
     echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
 
     echo "Installing apt packages..."
+    sudo apt-get update -qq
     sudo apt-get install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
+
+    # snap
+    if ! type snap > /dev/null
+    then
+      echo "Installing snap..."
+      sudo apt-get install --quiet snapd
+    fi
+
+    echo "Installing snap packages..."
+    sudo snap install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/snap.txt)
   fi
 fi
 
