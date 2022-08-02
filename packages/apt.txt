@@ -1,5 +1,5 @@
 avrdude
-rust-bat
+bat
 bmake
 build-essential
 clang-format

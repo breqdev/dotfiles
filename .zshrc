@@ -2,6 +2,8 @@
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # fig autocomplete
 
+export PATH="/usr/local/bin:$PATH"
+
 # neofetch
 neofetch
 
@@ -26,7 +28,7 @@ export GPG_TTY=$(tty)
 [ -s "/opt/homebrew/opt/openjdk" ] && export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # PyEnv
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+command -v pyenv >/dev/null || export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 

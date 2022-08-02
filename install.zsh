@@ -50,7 +50,7 @@ then
 
     echo "Installing apt packages..."
     sudo apt-get update -qq
-    sudo apt-get install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
+    sudo apt-get install -qq $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
 
     # snap
     if ! type snap > /dev/null
