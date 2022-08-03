@@ -75,6 +75,8 @@ fi
 command -v pyenv >/dev/null || PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+CPPFLAGS="-I$(brew --prefix openssl)/include -I$(xcrun --show-sdk-path)/usr/include"
+LDFLAGS="-L$(brew --prefix openssl)/lib"
 pyenv install --skip-existing 3.10.4
 pyenv global 3.10.4
 
