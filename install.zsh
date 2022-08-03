@@ -26,6 +26,14 @@ echo ""
 
 # install packages
 
+# apt
+if type apt > /dev/null
+then
+  echo "${failure}Installing apt packages...${reset}"
+  sudo apt update
+  sudo apt install -y $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
+fi
+
 # homebrew
 if ! type brew > /dev/null
 then
