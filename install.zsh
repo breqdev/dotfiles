@@ -52,7 +52,7 @@ echo "${failure}Installing Homebrew packages...${reset}"
 brew install $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt)
 
 # rust
-if ! type rustup > /dev/null
+if ! [[ -s $HOME/.cargo ]]
 then
   echo "${failure}Installing rustup...${reset}"
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y --no-modify-path
@@ -91,6 +91,9 @@ fi
 echo "${failure}Symlinking config files...${reset}"
 rm -f ~/.zshrc
 ln -s $REPO_ABSOLUTE_PATH/.zshrc ~/.zshrc
+
+rm -f ~/.oh-my-zsh/oh-my-zsh.sh
+ln -s $REPO_ABSOLUTE_PATH/oh-my-zsh.sh ~/.oh-my-zsh/oh-my-zsh.sh
 
 rm -f ~/.p10k.zsh
 ln -s $REPO_ABSOLUTE_PATH/.p10k.zsh ~/.p10k.zsh
