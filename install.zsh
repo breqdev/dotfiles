@@ -24,6 +24,13 @@ echo "                   ${c4}|_|"
 echo "${reset}"
 echo ""
 
+# install oh-my-zsh
+if ! [[ -s $HOME/.oh-my-zsh ]]
+then
+  echo "${failure}Installing oh-my-zsh...${reset}"
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 # install packages
 
 # apt
@@ -91,9 +98,6 @@ fi
 echo "${failure}Symlinking config files...${reset}"
 rm -f ~/.zshrc
 ln -s $REPO_ABSOLUTE_PATH/.zshrc ~/.zshrc
-
-rm -f ~/.oh-my-zsh/oh-my-zsh.sh
-ln -s $REPO_ABSOLUTE_PATH/oh-my-zsh.sh ~/.oh-my-zsh/oh-my-zsh.sh
 
 rm -f ~/.p10k.zsh
 ln -s $REPO_ABSOLUTE_PATH/.p10k.zsh ~/.p10k.zsh
