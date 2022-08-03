@@ -29,32 +29,32 @@ echo ""
 # homebrew
 if ! type brew > /dev/null
 then
-  echo "Installing Homebrew..."
+  echo "${failure}Installing Homebrew...${reset}"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [[ `uname` == "Linux" ]]
   then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   fi
 fi
-echo "Installing Homebrew packages..."
-brew install $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt) >/dev/null
+echo "${failure}Installing Homebrew packages...${reset}"
+brew install $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt)
 
 # rust
 if ! type rustup > /dev/null
 then
-  echo "Installing rustup..."
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -yq --no-modify-path
+  echo "${failure}Installing rustup...${reset}"
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y --no-modify-path
   source "$HOME/.cargo/env"
 fi
 
 # cargo
-echo "Updating Rust..."
-rustup -q update stable >/dev/null
+echo "${failure}Updating Rust...${reset}"
+rustup -q update stable
 
 # pip
 if ! [[ -s $HOME/.pyenv ]]
 then
-  echo "Installing pyenv..."
+  echo "${failure}Installing pyenv...${reset}"
   unalias rm >/dev/null 2>&1 || true
   rm -rf $HOME/.pyenv
   curl https://pyenv.run | bash
@@ -66,16 +66,16 @@ eval "$(pyenv virtualenv-init -)"
 pyenv install --skip-existing 3.10.4
 pyenv global 3.10.4
 
-echo "Installing Python packages..."
-pip install --quiet --upgrade pip
-pip install --quiet -r $REPO_ABSOLUTE_PATH/packages/pip.txt
+echo "${failure}Installing Python packages...${reset}"
+pip install --upgrade pip
+pip install -r $REPO_ABSOLUTE_PATH/packages/pip.txt
 
 # ssh keys
-echo "Installing SSH keys..."
+echo "${failure}Installing SSH keys...${reset}"
 python ssh.py
 
 # download plugins
-echo "Installing ZSH plugins..."
+echo "${failure}Installing ZSH plugins...${reset}"
 if [ -s ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]
 then
 else
@@ -89,7 +89,7 @@ else
 fi
 
 # symlink configs
-echo "Symlinking config files..."
+echo "${failure}Symlinking config files...${reset}"
 rm -f ~/.zshrc
 ln -s $REPO_ABSOLUTE_PATH/.zshrc ~/.zshrc
 
@@ -125,11 +125,11 @@ ln -s $REPO_ABSOLUTE_PATH/bottom/bottom.toml ~/.config/bottom/bottom.toml
 # gnome terminal profiles
 if [ -s /usr/bin/dconf ]
 then
-  echo "Installing Gnome Terminal profiles..."
+  echo "${failure}Installing Gnome Terminal profiles...${reset}"
   dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
 fi
 
-echo "Let's check a few things..."
+echo "${success}Let's check a few things...${reset}"
 echo ""
 
 MISCONFIG=0
