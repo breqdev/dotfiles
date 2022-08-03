@@ -27,11 +27,15 @@ echo ""
 # install packages
 
 # apt
-if type apt > /dev/null
+if [[ `uname` == "Linux" ]]
 then
-  echo "${failure}Installing apt packages...${reset}"
-  sudo apt update
-  sudo apt install -y $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
+  . /etc/os-release
+  if [[ $ID_LIKE == "Debian" ]]
+  then
+    echo "${failure}Installing apt packages...${reset}"
+    sudo apt update
+    sudo apt install -y $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
+  fi
 fi
 
 # homebrew
