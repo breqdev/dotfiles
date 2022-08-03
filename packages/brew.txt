@@ -17,7 +17,6 @@ gnupg
 lame
 libsodium
 lolcat
-lsusb
 miniserve
 ncurses
 neofetch
@@ -32,7 +31,6 @@ rm-improved
 ruby
 sl
 sqlite
-telnet
 thefuck
 thefuck
 tmux
