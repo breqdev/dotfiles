@@ -27,10 +27,13 @@ export GPG_TTY=$(tty)
 # Java OpenJDK
 [ -s "/opt/homebrew/opt/openjdk" ] && export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-# PyEnv
+# pyenv
 command -v pyenv >/dev/null || export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# rust
+export PATH="$HOME/.cargo/bin:${PATH}"
 
 # Android Studio
 [ -s "$HOME/Library/Android/sdk" ] && export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools

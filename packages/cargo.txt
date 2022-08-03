@@ -5,3 +5,4 @@ procs
 exa
 ripgrep
 rm-improved
+zoxide

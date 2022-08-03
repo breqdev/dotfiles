@@ -11,12 +11,6 @@ ffmpeg
 figlet
 fortune
 gnupg
-gst-plugins-bad
-gst-plugins-base
-gst-plugins-good
-gst-plugins-ugly
-gst-rtsp-server
-gstreamer
 lame
 libsodium
 lolcat
@@ -35,4 +29,3 @@ telnet
 thefuck
 tmux
 toilet
-zoxide

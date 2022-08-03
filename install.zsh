@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+set -e -o pipefail
+
 REPO_ABSOLUTE_PATH=$(pwd)
 
 c1="\033[38;5;206m"
@@ -49,18 +51,8 @@ then
     echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
 
     echo "Installing apt packages..."
-    sudo apt-get update -qq
-    sudo apt-get install -qq $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
-
-    # snap
-    if ! type snap > /dev/null
-    then
-      echo "Installing snap..."
-      sudo apt-get install --quiet snapd
-    fi
-
-    echo "Installing snap packages..."
-    sudo snap install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/snap.txt)
+    sudo apt-get update -yqq
+    sudo apt-get install -yqq $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt)
   fi
 fi
 
@@ -68,14 +60,19 @@ fi
 if ! type rustup > /dev/null
 then
   echo "Installing rustup..."
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -yq --no-modify-path
+  source "$HOME/.cargo/env"
 fi
 
 # cargo
 echo "Updating Rust..."
-rustup update stable
+rustup -q update stable
 echo "Installing Cargo packages..."
-cargo install --quiet --locked $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
+cargo install cargo-quickinstall
+
+while read -r package; do
+  cargo quickinstall $package
+done < $REPO_ABSOLUTE_PATH/packages/cargo.txt
 
 # pip
 if ! [[ -s $HOME/.pyenv ]]
