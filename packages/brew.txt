@@ -21,7 +21,6 @@ lsusb
 miniserve
 ncurses
 neofetch
-ngrok
 nmap
 perl
 postgresql
