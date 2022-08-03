@@ -37,7 +37,7 @@ then
   fi
 fi
 echo "Installing Homebrew packages..."
-brew install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt) >/dev/null
+brew install $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt) >/dev/null
 
 # rust
 if ! type rustup > /dev/null
