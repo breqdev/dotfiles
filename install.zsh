@@ -27,34 +27,13 @@ echo ""
 # install packages
 
 # homebrew
-if [[ `uname` == "Darwin" ]]
+if ! type brew > /dev/null
 then
-  if ! type brew > /dev/null
-  then
-    echo "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
-  echo "Installing Homebrew packages..."
-  brew install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt) >/dev/null
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-
-# apt and snap
-if [[ `uname` == "Linux" ]]
-then
-  . /etc/os-release
-  if [[ $ID_LIKE == "debian" ]]
-  then
-    echo "Setting up apt sources..."
-
-    # ngrok
-    curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
-    echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list >/dev/null
-
-    echo "Installing apt packages..."
-    sudo apt-get -yqq update
-    sudo apt-get -yqq install $(cat $REPO_ABSOLUTE_PATH/packages/apt.txt) >/dev/null
-  fi
-fi
+echo "Installing Homebrew packages..."
+brew install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt) >/dev/null
 
 # rust
 if ! type rustup > /dev/null
@@ -67,12 +46,6 @@ fi
 # cargo
 echo "Updating Rust..."
 rustup -q update stable >/dev/null
-echo "Installing Cargo packages..."
-cargo install --quiet cargo-quickinstall
-
-while read -r package; do
-  cargo quickinstall $package >/dev/null
-done < $REPO_ABSOLUTE_PATH/packages/cargo.txt
 
 # pip
 if ! [[ -s $HOME/.pyenv ]]
@@ -184,7 +157,7 @@ echo ""
 
 if [ $MISCONFIG -eq 0 ]
 then
-  echo "${success}All set!${reset} Enjoy your system, Brooke!"
+  echo "${success}All set!${reset} Enjoy your system, Brooke! ${failure}\uf004${reset}"
   echo ""
 fi
 
