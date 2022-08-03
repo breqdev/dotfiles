@@ -4,6 +4,12 @@
 
 export PATH="/usr/local/bin:$PATH"
 
+# homebrew on linux
+if [[ `uname` == "Linux" ]]
+then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # neofetch
 neofetch
 

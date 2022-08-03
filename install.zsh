@@ -31,6 +31,10 @@ if ! type brew > /dev/null
 then
   echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if [[ `uname` == "Linux" ]]
+  then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
 fi
 echo "Installing Homebrew packages..."
 brew install --quiet $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt) >/dev/null
