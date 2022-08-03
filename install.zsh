@@ -30,7 +30,7 @@ echo ""
 if [[ `uname` == "Linux" ]]
 then
   . /etc/os-release
-  if [[ $ID_LIKE == "Debian" ]]
+  if [[ $ID_LIKE == "debian" ]]
   then
     echo "${failure}Installing apt packages...${reset}"
     sudo apt update
