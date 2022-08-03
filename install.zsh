@@ -28,7 +28,7 @@ echo ""
 if ! [[ -s $HOME/.oh-my-zsh ]]
 then
   echo "${failure}Installing oh-my-zsh...${reset}"
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 # install packages
