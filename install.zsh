@@ -56,11 +56,11 @@ if ! [[ -s $HOME/.cargo ]]
 then
   echo "${failure}Installing rustup...${reset}"
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y --no-modify-path
-  source "$HOME/.cargo/env"
 fi
 
 # cargo
 echo "${failure}Updating Rust...${reset}"
+source "$HOME/.cargo/env"
 rustup -q update stable
 
 # pip
