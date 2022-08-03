@@ -64,23 +64,8 @@ echo "${failure}Updating Rust...${reset}"
 rustup -q update stable
 
 # pip
-if ! [[ -s $HOME/.pyenv ]]
-then
-  echo "${failure}Installing pyenv...${reset}"
-  unalias rm >/dev/null 2>&1 || true
-  rm -rf $HOME/.pyenv
-  curl https://pyenv.run | bash
-fi
-
-command -v pyenv >/dev/null || PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-CPPFLAGS="-I$(brew --prefix openssl)/include"
-LDFLAGS="-L$(brew --prefix openssl)/lib"
-pyenv install --skip-existing 3.10.4
-pyenv global 3.10.4
-
 echo "${failure}Installing Python packages...${reset}"
+PATH="$(brew --prefix python@3.10)/libexec/bin:$PATH"
 pip install --upgrade pip
 pip install -r $REPO_ABSOLUTE_PATH/packages/pip.txt
 

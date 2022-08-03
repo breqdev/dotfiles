@@ -21,10 +21,12 @@ miniserve
 ncurses
 neofetch
 nmap
+node@18
 perl
 postgresql
 pre-commit
 procs
+python@3.10
 redis
 ripgrep
 rm-improved
