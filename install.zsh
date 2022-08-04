@@ -128,6 +128,9 @@ rm -rf ~/.config/bottom/bottom.toml
 mkdir -p ~/.config/bottom
 ln -s $REPO_ABSOLUTE_PATH/bottom/bottom.toml ~/.config/bottom/bottom.toml
 
+rm -rf ~/.ssh/config
+ln -s $REPO_ABSOLUTE_PATH/ssh.config ~/.ssh/config
+
 # gnome terminal profiles
 if [ -s /usr/bin/dconf ]
 then
