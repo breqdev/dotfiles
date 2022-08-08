@@ -13,3 +13,5 @@
 	rebase = true
 [color]
 	ui = true
+[format]
+	pretty = oneline
