@@ -76,6 +76,7 @@ alias ps="procs"
 alias du="dust"
 alias top="btm"
 alias rm="rip"
+alias dig="dog"
 
 
 # fig autocomplete
