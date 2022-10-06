@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # fig autocomplete
 
 export PATH="/usr/local/bin:$PATH"
@@ -27,7 +27,7 @@ export GPG_TTY=$(tty)
 [ -s "$HOME/CEdev" ] && export PATH="$HOME/CEdev/bin:$PATH"
 
 # Racket lang
-[ -s "/Applications/Racket\ v8.2" ] && export PATH="/Applications/Racket\ v8.2/bin:$PATH"
+[ -s "/Applications/Racket" ] && export PATH="/Applications/Racket/bin:$PATH"
 
 # Java OpenJDK
 [ -s "/opt/homebrew/opt/openjdk" ] && export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
@@ -85,4 +85,4 @@ alias dig="dog"
 # fig autocomplete
 
 # Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

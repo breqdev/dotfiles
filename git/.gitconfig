@@ -5,6 +5,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nano
+	autocrlf = input
 [commit]
 	gpgsign = true
 [init]
