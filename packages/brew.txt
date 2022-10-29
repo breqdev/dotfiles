@@ -41,7 +41,6 @@ sl
 sqlite
 thefuck
 tcl-tk
-telnet
 tmux
 toilet
 youtube-dl
