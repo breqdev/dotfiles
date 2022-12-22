@@ -77,7 +77,7 @@ rustup -q update stable
 echo "${failure}Installing cargo-binstall...${reset}"
 cargo install cargo-binstall
 echo "${failure}Installing cargo packages...${reset}"
-cargo binstall $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
+cargo binstall -y $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
 
 # pyenv
 if ! [[ -s $HOME/.pyenv ]]
