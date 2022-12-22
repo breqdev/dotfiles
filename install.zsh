@@ -46,17 +46,20 @@ then
 fi
 
 # homebrew
-if ! type brew > /dev/null
+if [[ `uname` == "Darwin" ]]
 then
-  echo "${failure}Installing Homebrew...${reset}"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  if [[ `uname` == "Linux" ]]
+  if ! type brew > /dev/null
   then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "${failure}Installing Homebrew...${reset}"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if [[ `uname` == "Linux" ]]
+    then
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
   fi
+  echo "${failure}Installing Homebrew packages...${reset}"
+  brew install $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt)
 fi
-echo "${failure}Installing Homebrew packages...${reset}"
-brew install $(cat $REPO_ABSOLUTE_PATH/packages/brew.txt)
 
 # rust
 if ! [[ -s $HOME/.cargo ]]
@@ -70,11 +73,42 @@ echo "${failure}Updating Rust...${reset}"
 source "$HOME/.cargo/env"
 rustup -q update stable
 
+# cargo packages
+echo "${failure}Installing Rust packages...${reset}"
+cargo install $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
+
+# pyenv
+if ! [[ -s $HOME/.pyenv ]]
+then
+  echo "${failure}Installing pyenv...${reset}"
+  curl https://pyenv.run | bash
+fi
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# python
+echo "${failure}Installing Python...${reset}"
+pyenv install --skip-existing 3.10.0
+pyenv global 3.10.0
+
 # pip
 echo "${failure}Installing Python packages...${reset}"
-PATH="$(brew --prefix python@3.10)/libexec/bin:$PATH"
 pip install --upgrade pip
 pip install -r $REPO_ABSOLUTE_PATH/packages/pip.txt
+
+# nvm
+if ! [[ -s $HOME/.nvm ]]
+then
+  echo "${failure}Installing nvm...${reset}"
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+fi
+source $HOME/.nvm/nvm.sh
+
+# node
+echo "${failure}Installing Node...${reset}"
+nvm install --lts
+nvm use --lts
 
 # ssh keys
 echo "${failure}Installing SSH keys...${reset}"

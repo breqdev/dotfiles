@@ -12,3 +12,6 @@ pynacl
 pyserial
 python-dotenv
 virtualenv
+youtube-dl
+thefuck
+

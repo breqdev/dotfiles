@@ -1,0 +1,7 @@
+bat
+bottom
+du-dust
+exa
+ripgrep
+rm-improved
+zoxide
