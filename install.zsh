@@ -112,6 +112,10 @@ then
     fi
   fi
 fi
+
+# https://github.com/cargo-bins/cargo-binstall/issues/621
+cargo install cargo-mommy
+
 chmod +x $HOME/.cargo/bin/cargo-binstall
 echo "${failure}Installing cargo packages...${reset}"
 cargo binstall -y $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
