@@ -1,7 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
-# fig autocomplete
-
 export PATH="/usr/local/bin:$PATH"
 
 # pyenv
@@ -80,10 +76,3 @@ alias ps="procs"
 alias du="dust"
 alias top="btm"
 alias rm="rip"
-alias dig="dog"
-
-
-# fig autocomplete
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
