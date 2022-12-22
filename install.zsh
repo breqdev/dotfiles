@@ -75,7 +75,44 @@ rustup -q update stable
 
 # cargo packages
 echo "${failure}Installing cargo-binstall...${reset}"
-cargo install cargo-binstall
+if ! [[ -s $HOME/.cargo/bin/cargo-binstall ]]
+then
+  if [[ `uname` == "Linux" ]]
+  then
+    if [[ `uname -m` == "x86_64" ]]
+    then
+      curl -L https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-x86_64-unknown-linux-musl.tgz | tar -xz -C $HOME/.cargo/bin
+    else
+      if [[ `uname -m` == "arm64" || `uname -m` == "aarch64" ]]
+      then
+        curl -L https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-aarch64-unknown-linux-musl.tgz | tar -xz -C $HOME/.cargo/bin
+      else
+        echo "Unsupported architecture"
+        exit 1
+      fi
+    fi
+  else
+    if [[ `uname` == "Darwin" ]]
+    then
+      if [[ `uname -m` == "x86_64" ]]
+      then
+        curl -L https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-x86_64-apple-darwin.zip | tar -xz -C $HOME/.cargo/bin
+      else
+        if [[ `uname -m` == "arm64" || `uname -m` == "aarch64" ]]
+        then
+          curl -L https://github.com/cargo-bins/cargo-binstall/releases/latest/download/cargo-binstall-aarch64-apple-darwin.zip | tar -xz -C $HOME/.cargo/bin
+        else
+          echo "Unsupported architecture"
+          exit 1
+        fi
+      fi
+    else
+      echo "Unsupported OS"
+      exit 1
+    fi
+  fi
+fi
+chmod +x $HOME/.cargo/bin/cargo-binstall
 echo "${failure}Installing cargo packages...${reset}"
 cargo binstall -y $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
 
