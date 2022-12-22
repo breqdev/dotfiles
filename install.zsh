@@ -74,8 +74,10 @@ source "$HOME/.cargo/env"
 rustup -q update stable
 
 # cargo packages
-echo "${failure}Installing Rust packages...${reset}"
-cargo install $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
+echo "${failure}Installing cargo-binstall...${reset}"
+cargo install cargo-binstall
+echo "${failure}Installing cargo packages...${reset}"
+cargo binstall $(cat $REPO_ABSOLUTE_PATH/packages/cargo.txt)
 
 # pyenv
 if ! [[ -s $HOME/.pyenv ]]
