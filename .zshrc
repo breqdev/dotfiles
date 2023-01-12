@@ -4,7 +4,7 @@ export PATH="/usr/local/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-pyenv shell system
+pyenv global system
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
