@@ -35,6 +35,7 @@ export PATH="$HOME/.cargo/bin:${PATH}"
 
 # android ndk
 [ -s "/opt/homebrew/share/android-ndk" ] && export ANDROID_NDK_HOME="/opt/homebrew/share/android-ndk" && export PATH="$ANDROID_NDK_HOME:$PATH"
+export NDK=$ANDROID_NDK_HOME
 
 # Android Studio
 [ -s "$HOME/Library/Android/sdk" ] && export ANDROID_HOME=$HOME/Library/Android/sdk && export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
